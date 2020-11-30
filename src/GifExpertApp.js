@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { AddCategory } from "./components/AddCategory";
+import GifGrid from "./components/GifGrid";
 
 // Utilizando el comando rafc crea el componente con su contenido inicializado
 const GifExpertApp = () => {
-  const [categories, setCategories] = useState([
-    "One Punch",
-    "Samurai X",
-    "Dragon Ball",
-  ]);
+  const [categories, setCategories] = useState(["One Punch"]);
 
   // const handleAdd = () => {
   //     // Si hacemos esto está mal. Aquí lo que hace es pasar por arriba el state de categories
@@ -37,9 +34,9 @@ const GifExpertApp = () => {
           // El key es usado por React para tener una referencia del elemento cuando por ejemplo
           // algo cambia en ese elemento y no tenga que renderizar todo
           // En este caso, le ponemos category porque en el array no se repiten
-          categories.map((category) => {
-            return <li key={category}>{category}</li>;
-          })
+          categories.map((category) => (
+            <GifGrid category={category} key={category} />
+          ))
         }
       </ol>
     </>
