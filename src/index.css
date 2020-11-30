@@ -12,3 +12,27 @@ input {
   font-size: 1rem;
   color: gray;
 }
+
+.cardGrid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.card {
+  align-content: center;
+  border: 1px solid gray;
+  border-radius: 6px;
+  margin: 0 10px 10px 0;
+  overflow: hidden;
+}
+
+.card p {
+  padding: 3px;
+  text-align: center;
+  color: gray;
+}
+
+.card img {
+  max-height: 200px;
+}

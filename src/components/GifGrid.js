@@ -30,17 +30,19 @@ export const GifGrid = ({category}) => {
     };
 
     return (
-        <div>
+        <>
             <h3>{category}</h3>
-            {images.map((img) => {
-                // Al enviar '...img' estoy enviando cada una de las propiedades de la imagen
-                // de manera independiente
-                return <GifGridItem {...img} key={img.id} />;
+            <div className="cardGrid">
+                {images.map((img) => {
+                    // Al enviar '...img' estoy enviando cada una de las propiedades de la imagen
+                    // de manera independiente
+                    return <GifGridItem {...img} key={img.id} />;
 
-                // Otra forma
-                // return <GifGridItem img={img} key={img.id} />;
-            })}
-        </div>
+                    // Otra forma
+                    // return <GifGridItem img={img} key={img.id} />;
+                })}
+            </div>
+        </>
     );
 };
 
