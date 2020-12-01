@@ -1,31 +1,35 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import PropTypes from "prop-types";
 
-export const AddCategory = ({ setCategories }) => {
-  const [inputValue, setInputValue] = useState("");
+export const AddCategory = ({setCategories}) => {
+    const [inputValue, setInputValue] = useState("");
 
-  const handleInputChange = (e) => {
-    setInputValue(e.target.value);
-  };
+    const handleInputChange = (e) => {
+        setInputValue(e.target.value);
+    };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
-    if (inputValue.trim().length > 2)
-      setCategories((cats) => [...cats, inputValue]);
-    setInputValue("");
-  };
+        if (inputValue.trim().length > 2)
+            setCategories((cats) => [inputValue, ...cats]);
+        setInputValue("");
+    };
 
-  return (
-    // Cuando utilizamos un elemento form, no es necesario utilizar un
-    // Fragment porque el form agrupa todos los elementos
-    <form onSubmit={handleSubmit}>
-      <input type="text" value={inputValue} onChange={handleInputChange} />
-    </form>
-  );
+    return (
+        // Cuando utilizamos un elemento form, no es necesario utilizar un
+        // Fragment porque el form agrupa todos los elementos
+        <form onSubmit={handleSubmit}>
+            <input
+                type="text"
+                value={inputValue}
+                onChange={handleInputChange}
+            />
+        </form>
+    );
 };
 
 //Establece setCategories como requiered
 AddCategory.propTypes = {
-  setCategories: PropTypes.func.isRequired
+    setCategories: PropTypes.func.isRequired
 };

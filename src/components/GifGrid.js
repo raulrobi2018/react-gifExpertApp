@@ -1,33 +1,18 @@
 import React, {useState, useEffect} from "react";
+import {getGifs} from "../helpers/getGifs";
 import GifGridItem from "./GifGridItem";
 
 export const GifGrid = ({category}) => {
+    const [images, setImages] = useState([]);
+
     // Utilizamos el useEffect para que el componente se reenderize
     // una sola vez
+    // El segundo argumento es utilizado para decirle a React que si el
+    //category cambia, entonces reenderize. En este caso no cambia pero
+    //quitamos el warning del navegador que tira por este tema
     useEffect(() => {
-        getGifs();
-    }, []);
-
-    const [images, setimages] = useState([]);
-
-    const getGifs = async () => {
-        const url =
-            "https://api.giphy.com/v1/gifs/search?limit=10&q=cat&api_key=3Ysdk9Dh04shPsSSyQtka6WqJ57UNWzO";
-        const resp = await fetch(url);
-
-        const {data} = await resp.json();
-
-        const gifs = data.map((img) => {
-            return {
-                id: img.id,
-                title: img.title,
-                // Ponemos el operador '?' para asegurarnos de que el atributo exista
-                url: img.images?.downsized_medium.url
-            };
-        });
-
-        setimages(gifs);
-    };
+        getGifs(category).then(setImages);
+    }, [category]);
 
     return (
         <>
