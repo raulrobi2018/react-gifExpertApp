@@ -4,7 +4,12 @@ exports[`Testing GifGridItem Should return GifGridItem correctly 1`] = `
 <div
   className="card animate__animated animate__bounce"
 >
-  <img />
-  <p />
+  <img
+    alt="Title"
+    src="https://localhost/algo.jpg"
+  />
+  <p>
+    Title
+  </p>
 </div>
 `;
