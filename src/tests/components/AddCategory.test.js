@@ -1,10 +1,20 @@
 const {shallow} = require("enzyme");
 const {AddCategory} = require("../../components/AddCategory");
 
-describe("Test en componente AddCategory", () => {
-    const setCategories = () => {};
+import "@testing-library/jest-dom";
 
-    const wrapper = shallow(<AddCategory setCategories={setCategories} />);
+describe("Test en componente AddCategory", () => {
+    const setCategories = jest.fn();
+
+    // Acordarse que cuando modificamos el wrapper, hay que declararlo con let para que pueda mutarse
+    let wrapper;
+
+    beforeEach(() => {
+        // Esta función limpia cualquier mock o simulación de algo que hayamos hecho antes
+        jest.clearAllMocks();
+        // Vuelvo a inicializar el componente original
+        wrapper = shallow(<AddCategory setCategories={setCategories} />);
+    });
 
     test("should return AddCategory correctly", () => {
         expect(wrapper).toMatchSnapshot();
@@ -18,5 +28,11 @@ describe("Test en componente AddCategory", () => {
         input.simulate("change", {target: {value}});
 
         expect(wrapper.find("p").text().trim()).toBe(value);
+    });
+
+    test("should not show the information onSubmit", () => {
+        wrapper.find("form").simulate("submit", {preventDefault: () => {}});
+
+        expect(setCategories).not.toHaveBeenCalled();
     });
 });
