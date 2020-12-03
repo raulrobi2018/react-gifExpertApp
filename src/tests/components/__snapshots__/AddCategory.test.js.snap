@@ -4,6 +4,7 @@ exports[`Test en componente AddCategory should return AddCategory correctly 1`] 
 <form
   onSubmit={[Function]}
 >
+  <p />
   <input
     onChange={[Function]}
     type="text"

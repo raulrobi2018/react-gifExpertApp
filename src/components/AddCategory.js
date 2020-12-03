@@ -6,6 +6,8 @@ export const AddCategory = ({setCategories}) => {
 
     const handleInputChange = (e) => {
         setInputValue(e.target.value);
+
+        console.log("handleInputChange llamado");
     };
 
     const handleSubmit = (e) => {
@@ -20,6 +22,7 @@ export const AddCategory = ({setCategories}) => {
         // Cuando utilizamos un elemento form, no es necesario utilizar un
         // Fragment porque el form agrupa todos los elementos
         <form onSubmit={handleSubmit}>
+            <p>{inputValue}</p>
             <input
                 type="text"
                 value={inputValue}
