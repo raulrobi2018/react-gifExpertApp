@@ -1,6 +1,8 @@
-const {shallow} = require("enzyme");
-const {AddCategory} = require("../../components/AddCategory");
+import {shallow} from "enzyme";
+import AddCategory from "../../components/AddCategory";
+import React from "react";
 
+//Para que me de la ayuda de funciones hago esta importación
 import "@testing-library/jest-dom";
 
 describe("Test en componente AddCategory", () => {
@@ -34,5 +36,21 @@ describe("Test en componente AddCategory", () => {
         wrapper.find("form").simulate("submit", {preventDefault: () => {}});
 
         expect(setCategories).not.toHaveBeenCalled();
+    });
+
+    test("should call the setCategories and clear the input text", () => {
+        const value = "Hola mundo";
+        // Simulates the input change
+        wrapper.find("input").simulate("change", {target: {value}});
+        // Simulates the submit form
+        wrapper.find("form").simulate("submit", {preventDefault: () => {}});
+        // Checks the setCategories call
+        expect(setCategories).toHaveBeenCalled();
+        // Checks if the setCategories was called 1 time
+        expect(setCategories).toHaveBeenCalledTimes(1);
+        // Checks if the setCategories was called with a function
+        expect(setCategories).toHaveBeenCalledWith(expect.any(Function));
+        // Checks if the input value is empty
+        expect(wrapper.find("input").prop("value")).toBe("");
     });
 });
