@@ -3,6 +3,9 @@ import GifGrid from "../../components/GifGrid";
 import React from "react";
 import {useFetchGifs} from "../../hooks/useFetchGifs";
 
+//Para que me de la ayuda de funciones hago esta importación
+import "@testing-library/jest-dom";
+
 //Simula cualquier llamada al useFetchGifs
 jest.mock("../../hooks/useFetchGifs");
 
@@ -33,6 +36,11 @@ describe("Testing GifGrid", () => {
         });
 
         const wrapper = shallow(<GifGrid category={categ} />);
-        expect(wrapper).toMatchSnapshot();
+
+        //Busca si existe el párrafo del loading
+        expect(wrapper.find("p").exists()).toBe(false);
+
+        //Comprueba la cantidad de gifs
+        expect(wrapper.find("GifGridItem").length).toBe(gifs.length);
     });
 });
