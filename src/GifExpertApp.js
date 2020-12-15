@@ -3,8 +3,10 @@ import {AddCategory} from "./components/AddCategory";
 import GifGrid from "./components/GifGrid";
 
 // Utilizando el comando rafc crea el componente con su contenido inicializado
-const GifExpertApp = () => {
-    const [categories, setCategories] = useState(["One Punch"]);
+//Inicializamos con defaultCategories que será un array que el usuario enviará por defecto
+const GifExpertApp = ({defaultCategories = []}) => {
+    // const [categories, setCategories] = useState(["One Punch"]);
+    const [categories, setCategories] = useState(defaultCategories);
 
     // const handleAdd = () => {
     //     // Si hacemos esto está mal. Aquí lo que hace es pasar por arriba el state de categories
